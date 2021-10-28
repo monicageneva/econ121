@@ -16,7 +16,7 @@ library(dplyr) # for glympse()
 glimpse(nlsy)
 
 # Birth weight is in logs, which is a little complicated to interpret
-# Let's convert to a low birth weight indicator, based on the 88 ounce threshold
+# Let's convert to a very low birth weight indicator, based on the 53 ounce threshold
 nlsy$vlow_bw <- ifelse(exp(nlsy$lnbw) < 53, 1, 0)
 
 # OLS with robust standard errors

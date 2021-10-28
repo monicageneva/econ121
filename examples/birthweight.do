@@ -10,7 +10,7 @@ sort mom_id /*sort so that siblings are next to each other in the dataset*/
 browse mom_id hispanic black momed male firstborn lnbw comp_score_11to14
 
 *Birth weight is in logs, which is a little complicated to interpret
-*Let's convert to a low birth weight indicator, based on the 88 ounce threshold
+*Let's convert to a very low birth weight indicator, based on the 53 ounce threshold
 gen vlow_bw = (exp(lnbw)<53) if lnbw<.
 
 *OLS with robust standard errors
