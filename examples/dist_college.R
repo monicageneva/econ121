@@ -55,12 +55,14 @@ lm_robust(lwage ~ nearc4 + age + age2 + black + daded + momed + sinmom14 + south
 # install.packages("AER")
 library(AER)
 # no background covariates
-ivreg(lwage ~ edyrs + age + age2 + black | nearc4 + age + age2 + black, data = nlsym)
+ivmodel1 <- ivreg(lwage ~ edyrs + age + age2 + black | nearc4 + age + age2 + black, data = nlsym)
+coeftest(ivmodel1, vcov = vcovHC(ivmodel1, type="HC2")) # to get robust standard errors
 
 # background covariates
-ivreg(lwage ~ edyrs + age + age2 + black + daded + momed + sinmom14 + south | 
-      nearc4 + age + age2 + black + daded + momed + sinmom14 + south,
-      data = nlsym)
+ivmodel2 <- ivreg(lwage ~ edyrs + age + age2 + black + daded + momed + sinmom14 + south | 
+                  nearc4 + age + age2 + black + daded + momed + sinmom14 + south,
+                  data = nlsym)
+coeftest(ivmodel2, vcov = vcovHC(ivmodel2, type="HC2")) # to get robust standard errors
 
 # Is the instrument valid?
 # Ideally, would not be correlated with background characteristics.
