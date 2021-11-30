@@ -35,13 +35,13 @@ ggplot() +
   geom_line(data = yhat_above, aes(x = x, y = y)) +
   labs(x="distance", y="exit exam percentile")
 	   
-# first stage local linear regression with rectangular kernel and bw = 0.05
+# first stage local linear regression with rectangular kernel and bw = 0.2
 library(dplyr)
 library(estimatr)
 romania <- mutate(romania, above=ifelse(distance>=0,1,0), aboveXdistance=above*distance)
 lm_robust(better ~ above + distance + aboveXdistance, data=romania, subset=(abs(distance)<=0.2))
 
-# reduced form local linear regression with rectangular kernel and bw = 0.05
+# reduced form local linear regression with rectangular kernel and bw = 0.2
 lm_robust(ptile ~ above + distance + aboveXdistance, data=romania, subset=(abs(distance)<=0.2))
 
 # ratio of reduced form to first stage --> effect of going to the town's better school on exit exam percentile
