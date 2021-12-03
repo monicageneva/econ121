@@ -1,7 +1,7 @@
 *this do file estimates the political party incumbency
 *advantage in US House elections
 
-use "https://github.com/tvogl/econ121/raw/main/data/elections.dta"
+use "https://github.com/tvogl/econ121/raw/main/data/elections.dta",clear
 
 *the running variable in this RD analysis is the
 *democratic vote margin of victory: the vote share
